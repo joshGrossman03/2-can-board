@@ -3,7 +3,8 @@
         
     <div
     v-bind:id="id"
-    class="board"
+
+
     @dragover.prevent
     @drop.prevent="drop"
     >
@@ -32,4 +33,9 @@ export default {
 </script>
 
 
+<style scoped>
+
+@import url("https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css");
+
+</style>
 

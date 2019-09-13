@@ -8,8 +8,9 @@
         <p>
             <input type="checkbox" v-on:change="markComplete">
             {{todo.title}}
-            <button @click="$emit('del-todo',todo.id)" class="del">x</button>
-            
+
+            <button type="button" @click="$emit('del-todo',todo.id)" class="del">x</button>
+
         </p>
     </div>
 </template>

@@ -3,28 +3,33 @@
     <Header />
     <AddTodo v-on:add-todo="addTodo" />
     <!--<Todos v-bind:todos="todos" v-on:del-todo="deleteTodo" />-->
-    <main class="flexbox">
-      <Board id="board-1">
-        <Card v-bind:card="cards" id="card-1" draggable="true">
-          <p>Card One I Grow when I contain More Text</p>
+
+    <div class="container-flex">
+    <div class="row">
+      <Board class="col-md-3" id="board-1">
+        <Card v-for="(card, i) in cards" v-bind:key="i" id="card-1" draggable="true">
+          <p>{{cards[i].cardname}}<br>{{cards[i].cardTitle}}<br>{{cards[i].owner}}<br>{{cards[i].category}}</p>
         </Card>
       </Board>
-      <Board id="board-2">
-        <Card id="card-2" draggable="true">
-          <p>Card Two Card One I Grow when I contain More Text</p>
+      <Board class="col-md-3" id="board-2">
+        <Card v-for="(card, i) in cards" v-bind:key="i" id="card-2" draggable="true">
+          <p>{{cards[i].cardname}}<br>{{cards[i].cardTitle}}<br>{{cards[i].owner}}<br>{{cards[i].category}}</p>
         </Card>
       </Board>
-      <Board id="board-3">
-        <Card id="card-3" draggable="true">
-          <p>Card Two Card One I Grow when I contain More Text</p>
+      <Board class="col-md-3" id="board-3">
+        <Card class="card" v-for="(card, i) in cards" v-bind:key="i" id="card-3" draggable="true">
+          <p>{{cards[i].cardname}}<br>{{cards[i].cardTitle}}<br>{{cards[i].owner}}<br>{{cards[i].category}}</p>
         </Card>
       </Board>
-      <Board id="board-4">
-        <Card id="card-4" draggable="true">
-          <p>Card TwoCard One I Grow when I contain More Text</p>
+      <Board class="col-md-3" id="board-4">
+        <Card class="card" v-for="(card, i) in cards" v-bind:key="i" id="card-4" draggable="true">
+          <p>{{cards[i].cardname}}<br>{{cards[i].cardTitle}}<br>{{cards[i].owner}}<br>{{cards[i].category}}</p>
         </Card>
       </Board>
-    </main>
+    </div>
+  </div>
+=======
+  
   </div>
 </template>
 
@@ -49,10 +54,11 @@ export default {
     return {
       todos: [],
       cards:[
-            {cardname: 'cardOne'},
-            {cardname: 'cardTwo'},
-            {cardname: 'cardThree'},
-            {cardname: 'cardFour'}
+            {cardname: 'cardOne', cardTitle:'Fix Bugs', owner:'Josh',category:'Team'},
+            {cardname: 'cardTwo',cardTitle:'Test', owner:'Kadonna',category:'Team'},
+            {cardname: 'cardThree',cardTitle:'Fix Bugs', owner:'Lorena',category:'Team'},
+            {cardname: 'cardFour',cardTitle:'Fix Bugs', owner:'Rafael',category:'Team'}
+
             ]
     };
   },
@@ -87,24 +93,18 @@ export default {
 </script>
 
 <style>
-* {
+/** {
+
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
+
 body {
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.4;
 }
 
-.btn {
-  display: inline-block;
-  border: none;
-  background: #555;
-  color: #fff;
-  padding: 7px 20px;
-  cursor: pointer;
-}
 .btn:hover {
   background: #666;
 }
@@ -130,8 +130,10 @@ body {
   display:flex;
   flex-direction: column;
   width: 100%;
+  height:100vh;
   max-width: 500px;
-  /* background: #313131; */
+  /* background: #313131; 
+
   padding: 15px;  
   border: 2px solid whitesmoke;
   border-radius: 10px;
@@ -149,8 +151,15 @@ body {
   background-image: url("https://images.pexels.com/photos/351283/pexels-photo-351283.jpeg?cs=srgb&dl=bay-beach-brazil-351283.jpg&fm=jpg");
   background-size: 100%;
 }
-.card{
+
+/*.card{
   width:100%;
   height:15vh;
+}*/
+.container-flex{
+  background-image: url("https://images.pexels.com/photos/351283/pexels-photo-351283.jpeg?cs=srgb&dl=bay-beach-brazil-351283.jpg&fm=jpg");
+  background-size: 100%;
 }
+@import url("https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css");
 </style>
+
