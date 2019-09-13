@@ -3,6 +3,7 @@
     <Header />
     <AddTodo v-on:add-todo="addTodo" />
     <!--<Todos v-bind:todos="todos" v-on:del-todo="deleteTodo" />-->
+
     <div class="container-flex">
     <div class="row">
       <Board class="col-md-3" id="board-1">
@@ -27,6 +28,8 @@
       </Board>
     </div>
   </div>
+=======
+  
   </div>
 </template>
 
@@ -55,6 +58,7 @@ export default {
             {cardname: 'cardTwo',cardTitle:'Test', owner:'Kadonna',category:'Team'},
             {cardname: 'cardThree',cardTitle:'Fix Bugs', owner:'Lorena',category:'Team'},
             {cardname: 'cardFour',cardTitle:'Fix Bugs', owner:'Rafael',category:'Team'}
+
             ]
     };
   },
@@ -90,6 +94,7 @@ export default {
 
 <style>
 /** {
+
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -99,7 +104,6 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.4;
 }
-
 
 .btn:hover {
   background: #666;
@@ -129,6 +133,7 @@ body {
   height:100vh;
   max-width: 500px;
   /* background: #313131; 
+
   padding: 15px;  
   border: 2px solid whitesmoke;
   border-radius: 10px;
@@ -146,6 +151,7 @@ body {
   background-image: url("https://images.pexels.com/photos/351283/pexels-photo-351283.jpeg?cs=srgb&dl=bay-beach-brazil-351283.jpg&fm=jpg");
   background-size: 100%;
 }
+
 /*.card{
   width:100%;
   height:15vh;
@@ -156,5 +162,4 @@ body {
 }
 @import url("https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css");
 </style>
-
 
