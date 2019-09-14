@@ -1,4 +1,5 @@
 <template>
+
         <div
     v-bind:id="id"
     class="card"
@@ -8,22 +9,16 @@
     
     >
     <slot  />
-        </div>       
+
+        </div> 
+            
+
 </template>
 
 <script>
 //import { setTimeout } from 'timers';
 export default {
-    data(){
-        return {
-            cards:[
-            {cardname: 'cardOne'},
-            {cardname: 'cardTwo'},
-            {cardname: 'cardThree'},
-            {cardname: 'cardFour'}
-            ]
-        }     
-    },
+
     props:['id','draggable'],
     methods:{
         dragStart: e => {
