@@ -44,7 +44,7 @@ export default {
     AddTodo,
     Board,
     Card
-  },
+  }, //cards hardcoded on the board.
   data() {
     return {
       todos: [],
@@ -56,6 +56,8 @@ export default {
             ]
     };
   },
+  //begining of lorena's code
+// end of Lorena's code
   methods: {
     deleteTodo(id) {
       axios
