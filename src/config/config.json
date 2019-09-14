@@ -1,9 +1,9 @@
 {
   "development": {
     "username": "rs5h4ehyqldjxbus",
-    "password": vgy9bfeyl4jfkmrd,
-    "database": "vgy9bfeyl4jfkmrd",
-    "host": "127.0.0.1",
+    "password": "vgy9bfeyl4jfkmrd",
+    "database": "mnr8osiw8ctp4n5j",
+    "host": "s54ham9zz83czkff.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     "port": 3306,
     "dialect": "mysql"
   },
