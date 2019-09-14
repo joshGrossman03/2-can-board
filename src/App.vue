@@ -1,10 +1,11 @@
 <template>
   <div id="app">
     <Header />
+    <div class="container">
     <AddTodo v-on:add-todo="addTodo" />
     <!--<Todos v-bind:todos="todos" v-on:del-todo="deleteTodo" />-->
 
-    <div class="container-flex">
+   
     <div class="row">
       <!--Board 1 is the To Do list -->
       <Board class="col-md-3" id="board-1">
@@ -32,7 +33,6 @@
       </Board>
     </div>
   </div>
-=======
   
   </div>
 </template>
@@ -160,7 +160,7 @@ body {
   width:100%;
   height:15vh;
 }*/
-.container-flex{
+.container{
   background-image: url("https://images.pexels.com/photos/351283/pexels-photo-351283.jpeg?cs=srgb&dl=bay-beach-brazil-351283.jpg&fm=jpg");
   background-size: 100%;
 }

@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 // *****************************************************************************
 // Server.js - This file is the initial starting point for the Node/Express server.
 //
@@ -26,8 +27,8 @@ app.use(serveStatic(__dirname + "/dist"));
 
 // Routes
 // =============================================================
-require("./routes/api-routes.js")(app);
-require("./routes/html-routes.js")(app);
+require("./src/routes/api-routes.js")(app);
+require("./src/routes/html-routes.js")(app);
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
