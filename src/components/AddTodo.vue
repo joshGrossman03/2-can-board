@@ -1,5 +1,4 @@
 <template>
-
   <div>
     <button @click="show = !show" class="btn btn-info">Add Task</button>
     <form v-if="show">
@@ -14,19 +13,23 @@
         />
       </div>
       <div class="form-group">
+
         <label for="cat">Category</label>
         <select class="form-control" id="cat">
+
           <option>...</option>
           <option>Personal</option>
           <option>Team</option>
         </select>
       </div>
       <div class="form-group">
+
         <label for="desc">Description</label>
         <textarea class="form-control" id="desc" rows="3" placeholder="description" ></textarea>
        
       </div>
        <button @click="handleSubmit">Submit</button> 
+
     </form>
   </div>
 </template>
