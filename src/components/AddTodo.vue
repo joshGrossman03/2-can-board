@@ -1,9 +1,9 @@
 <template>
   <div>
-    <button @click="show = !show" class="btn btn-info">Add Issue</button>
+    <button @click="show = !show" class="btn btn-info">Add Task</button>
     <form v-if="show">
       <div class="form-group">
-        <label for="Input1">Issue Title</label>
+        <label for="Input1">Task Title</label>
         <input
           type="text"
           v-model="title"
@@ -21,7 +21,7 @@
         </select>
       </div>
       <div class="form-group">
-        <label for="Textarea1">Example textarea</label>
+        <label for="Textarea1">Description</label>
         <textarea class="form-control" id="Textarea1" rows="3"></textarea>
       </div>
     </form>
@@ -29,15 +29,13 @@
 </template>
 
 <script>
-
 export default {
   name: "AddTodo",
-  
+
   data() {
-    
     return {
       title: "",
-      show:false,
+      show: false
     };
   },
   methods: {
@@ -46,30 +44,23 @@ export default {
       const createTodo = {
         //id: uuid.v4(),
         title: this.title,
-        completed: false
+        status: "todo",
+        category: this.category,
+        description: this.description
       };
       //send up to parent
       this.$emit("add-todo", createTodo);
       //clear out input
       this.title = "";
-    },
-    addIssue(e) {
-      e.preventDefault();
-      const createIssue = {
-        title: this.title
-      };
-      this.$emit("add-issue", createIssue);
-      this.title = "";
+      this.category = "";
+      this.description = "";
     }
   }
 };
-
 </script>
 
 
 
 <style scoped>
-
 @import url("https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css");
-
 </style>

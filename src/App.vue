@@ -6,21 +6,25 @@
 
     <div class="container-flex">
     <div class="row">
+      <!--Board 1 is the To Do list -->
       <Board class="col-md-3" id="board-1">
         <Card v-for="(card, i) in cards" v-bind:key="i" id="card-1" draggable="true">
           <p>{{cards[i].cardname}}<br>{{cards[i].cardTitle}}<br>{{cards[i].owner}}<br>{{cards[i].category}}</p>
         </Card>
       </Board>
+      <!--Board 2 is the In Progress-working list -->
       <Board class="col-md-3" id="board-2">
         <Card v-for="(card, i) in cards" v-bind:key="i" id="card-2" draggable="true">
           <p>{{cards[i].cardname}}<br>{{cards[i].cardTitle}}<br>{{cards[i].owner}}<br>{{cards[i].category}}</p>
         </Card>
       </Board>
+      <!--Board 3 is the In Progress-waiting list -->
       <Board class="col-md-3" id="board-3">
         <Card class="card" v-for="(card, i) in cards" v-bind:key="i" id="card-3" draggable="true">
           <p>{{cards[i].cardname}}<br>{{cards[i].cardTitle}}<br>{{cards[i].owner}}<br>{{cards[i].category}}</p>
         </Card>
       </Board>
+      <!--Board 4 is the Completed list -->
       <Board class="col-md-3" id="board-4">
         <Card class="card" v-for="(card, i) in cards" v-bind:key="i" id="card-4" draggable="true">
           <p>{{cards[i].cardname}}<br>{{cards[i].cardTitle}}<br>{{cards[i].owner}}<br>{{cards[i].category}}</p>
