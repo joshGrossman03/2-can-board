@@ -1,5 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
   var Todo = sequelize.define("Todo", {
+
     title: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -28,6 +29,7 @@ module.exports = function(sequelize, DataTypes) {
         len: [1]
       }
     }
+
   });
   return Todo;
 };
