@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import Todos from "./components/Todos";
+
 import Header from "./components/Layouts/Header";
 import AddTodo from "./components/AddTodo";
 import axios from "axios";
@@ -49,53 +49,50 @@ export default {
   name: "app",
   components: {
     Header,
-    Todos,
     AddTodo,
     Board,
     Card
   }, //cards hardcoded on the board.
   data() {
     return {
-      todos: [],
-      cards:[
-            {cardname: 'cardOne', cardTitle:'Fix Bugs', owner:'Josh',category:'Team'},
-            {cardname: 'cardTwo',cardTitle:'Test', owner:'Kadonna',category:'Team'},
-            {cardname: 'cardThree',cardTitle:'Fix Bugs', owner:'Lorena',category:'Team'},
-            {cardname: 'cardFour',cardTitle:'Fix Bugs', owner:'Rafael',category:'Team'}
-
-            ]
+     
+      cards:[]
     };
   },
   //begining of lorena's code
 // end of Lorena's code
   methods: {
-    deleteTodo(id) {
-      axios
-        .delete("https://jsonplaceholder.typicode.com/todos/${id}")
-        .then(res => (this.todos = this.todos.filter(todo => todo.id !== id)))
-        .catch(error => console.log(error));
-      //this.todos = this.todos.filter(todo => todo.id !== id);
-    },
+    // deleteTodo(id) {
+    //   axios
+    //     .delete("https://jsonplaceholder.typicode.com/todos/${id}")
+    //     .then(res => (this.todos = this.todos.filter(todo => todo.id !== id)))
+    //     .catch(error => console.log(error));
+    //   //this.todos = this.todos.filter(todo => todo.id !== id);
+    // },
     addTodo(createTodo) {
-      const { title, completed } = createTodo;
+       const { title, category,description,status} = createTodo;
 
       axios
-        .post("https://jsonplaceholder.typicode.com/todos", {
+        .post("/api/todos", {
           title,
-          completed
+          category,
+          description,
+          status:"todo"
+          
         })
-        .then(res => (this.todos = [...this.todos, res.data]))
+        .then(res => (this.cards = [...this.cards, res.data]))
         .catch(error => console.log(error));
       //this.todos = [...this.todos, createTodo];
     }
-  },
-  created() {
-    axios
-      .get("https://jsonplaceholder.typicode.com/todos?_limit=10")
-      .then(res => (this.todos = res.data))
-      .catch(error => console.log(error));
   }
 };
+//   created() {
+//     axios
+//       .get("https://jsonplaceholder.typicode.com/todos?_limit=10")
+//       .then(res => (this.todos = res.data))
+//       .catch(error => console.log(error));
+//   }
+// };
 </script>
 
 <style>
