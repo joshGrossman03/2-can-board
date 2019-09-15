@@ -15,7 +15,7 @@
       <div class="form-group">
 
         <label for="cat">Category</label>
-        <select class="form-control" id="cat">
+        <select v-model="category" class="form-control" id="cat">
 
           <option>...</option>
           <option>Personal</option>
@@ -25,10 +25,10 @@
       <div class="form-group">
 
         <label for="desc">Description</label>
-        <textarea class="form-control" id="desc" rows="3" placeholder="description" ></textarea>
-       
+        <textarea v-model="description" class="form-control" id="desc" rows="3" placeholder="description" ></textarea>
+       {{this.title}}{{this.category}}{{this.description}}
       </div>
-       <button @click="handleSubmit">Submit</button> 
+       <button @click="addTodo">Submit</button> 
 
     </form>
   </div>
@@ -41,6 +41,8 @@ export default {
   data() {
     return {
       title: "",
+      category:"",
+      description:"",
       show: false
     };
   },
@@ -48,11 +50,12 @@ export default {
     addTodo(e) {
       e.preventDefault();
       const createTodo = {
-        //id: uuid.v4(),
         title: this.title,
-        status: "todo",
         category: this.category,
-        description: this.description
+        description: this.description,
+        status: "todo",
+        
+       
       };
       //send up to parent
       this.$emit("add-todo", createTodo);
