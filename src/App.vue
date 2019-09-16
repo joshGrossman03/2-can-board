@@ -8,28 +8,30 @@
    
     <div class="row">
       <!--Board 1 is the To Do list -->
-      <Board class="col-md-3" id="board-1">
-        <Card v-for="(card, i) in cards" v-bind:key="i" id="card-1" draggable="true">
+      <Board class="col-md-3" id="ToDos">
+        <Card v-for="(card,i) in cards" v-bind:key="i">
           <h5 class="card-title">{{cards[i].title}}</h5>
-          <h6 class="card-title">{{cards[i].category}}</h6>
+          <h6 class="card-title">Category: {{cards[i].category}}</h6>
           <p class="card-text">{{cards[i].description}}</p>
-          <a @click="deleteTodo" href="#" class="btn btn-primary">Delete Me</a>
+          <p class="card-text">Task #: {{cards[i].id}}</p>
+         
+          <a v-on:click="deleteTodo(8)" href="#" class="btn btn-primary">Delete Me</a>
         </Card>
       </Board>
       <!--Board 2 is the In Progress-working list -->
-      <Board class="col-md-3" id="board-2">
+      <Board class="col-md-3" id="inProgress">
         <Card v-for="(card, i) in cards" v-bind:key="i" id="card-2" draggable="true">
           <p>{{cards[i].cardname}}<br>{{cards[i].cardTitle}}<br>{{cards[i].owner}}<br>{{cards[i].category}}</p>
         </Card>
       </Board>
       <!--Board 3 is the In Progress-waiting list -->
-      <Board class="col-md-3" id="board-3">
+      <Board class="col-md-3" id="inProgressWaiting">
         <Card class="card" v-for="(card, i) in cards" v-bind:key="i" id="card-3" draggable="true">
           <p>{{cards[i].cardname}}<br>{{cards[i].cardTitle}}<br>{{cards[i].owner}}<br>{{cards[i].category}}</p>
         </Card>
       </Board>
       <!--Board 4 is the Completed list -->
-      <Board class="col-md-3" id="board-4">
+      <Board class="col-md-3" id="complted">
         <Card class="card" v-for="(card, i) in cards" v-bind:key="i" id="card-4" draggable="true">
           <p>{{cards[i].cardname}}<br>{{cards[i].cardTitle}}<br>{{cards[i].owner}}<br>{{cards[i].category}}</p>
         </Card>
@@ -48,7 +50,7 @@ import axios from "axios";
 import Board from "./components/Board";
 import Card from "./components/Card";
 
-// onload(this.methods.created);
+
 
 export default {
   name: "app",
@@ -61,7 +63,7 @@ export default {
   data() {
     return {
       cards:[],
-     
+      
       
     };
   },
@@ -70,16 +72,21 @@ export default {
 // end of Lorena's code
   methods: {
     deleteTodo(id) {
+    
       axios
-        .delete("/api/todos/:id")
-        .then(res => (this.todos = this.todos.filter(todo => todo.id !== id)))
+        .delete("/api/todos/" + id)
+          .then(res => (this.cards = res.data))
         .catch(error => console.log(error));
-      //this.todos = this.todos.filter(todo => todo.id !== id);
+
+        axios
+      .get("/api/todos")
+      .then(res => (this.cards = res.data))
+      .catch(error => console.log(error));
     },
 
     
     addTodo(createTodo) {
-       const { title, category,description,status} = createTodo;
+      const { title, category,description,status} = createTodo;
 
       axios
         .post("/api/todos", {
@@ -91,7 +98,6 @@ export default {
         })
         .then(res => (this.cards = [...this.cards, res.data]))
         .catch(error => console.log(error));
-      //this.todos = [...this.todos, createTodo];
     }
   
 },
@@ -100,7 +106,7 @@ export default {
       .get("/api/todos")
       .then(res => (this.cards = res.data))
       .catch(error => console.log(error));
-  }
+  },
 };
 </script>
 
