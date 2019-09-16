@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 // *********************************************************************************
 // api-routes.js - this file offers a set of routes for displaying and saving data to the db
 // *********************************************************************************
@@ -13,7 +14,7 @@ var db = require("../../models");
 module.exports = function(app) {
   // GET route for getting all of the todos
   app.get("/api/todos/", function(req, res) {
-    db.todo.findAll({}).then(function(dbTodo) {
+    db.Todo.findAll({}).then(function(dbTodo) {
       res.json(dbTodo);
     });
   });
@@ -43,13 +44,16 @@ module.exports = function(app) {
   // Todo route for saving a new todo to the db
   app.post("/api/todos", function(req, res) {
     console.log(req.body);
+    
     db.Todo.create({
+      
       title: req.body.title,
       category: req.body.category,
       description: req.body.description,
       status: req.body.status
     }).then(function(dbTodo) {
       res.json(dbTodo);
+      console.log(res.json(dbTodo));
     });
   });
 

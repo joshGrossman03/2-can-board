@@ -10,7 +10,10 @@
       <!--Board 1 is the To Do list -->
       <Board class="col-md-3" id="board-1">
         <Card v-for="(card, i) in cards" v-bind:key="i" id="card-1" draggable="true">
-          <p>{{cards[i].cardname}}<br>{{cards[i].cardTitle}}<br>{{cards[i].owner}}<br>{{cards[i].category}}</p>
+          <h5 class="card-title">{{cards[i].title}}</h5>
+          <h6 class="card-title">{{cards[i].category}}</h6>
+          <p class="card-text">{{cards[i].description}}</p>
+          <a @click="deleteTodo" href="#" class="btn btn-primary">Delete Me</a>
         </Card>
       </Board>
       <!--Board 2 is the In Progress-working list -->
@@ -45,6 +48,8 @@ import axios from "axios";
 import Board from "./components/Board";
 import Card from "./components/Card";
 
+// onload(this.methods.created);
+
 export default {
   name: "app",
   components: {
@@ -55,20 +60,24 @@ export default {
   }, //cards hardcoded on the board.
   data() {
     return {
+      cards:[],
      
-      cards:[]
+      
     };
   },
+
   //begining of lorena's code
 // end of Lorena's code
   methods: {
-    // deleteTodo(id) {
-    //   axios
-    //     .delete("https://jsonplaceholder.typicode.com/todos/${id}")
-    //     .then(res => (this.todos = this.todos.filter(todo => todo.id !== id)))
-    //     .catch(error => console.log(error));
-    //   //this.todos = this.todos.filter(todo => todo.id !== id);
-    // },
+    deleteTodo(id) {
+      axios
+        .delete("/api/todos/:id")
+        .then(res => (this.todos = this.todos.filter(todo => todo.id !== id)))
+        .catch(error => console.log(error));
+      //this.todos = this.todos.filter(todo => todo.id !== id);
+    },
+
+    
     addTodo(createTodo) {
        const { title, category,description,status} = createTodo;
 
@@ -84,81 +93,19 @@ export default {
         .catch(error => console.log(error));
       //this.todos = [...this.todos, createTodo];
     }
+  
+},
+  created() {
+    axios
+      .get("/api/todos")
+      .then(res => (this.cards = res.data))
+      .catch(error => console.log(error));
   }
 };
-//   created() {
-//     axios
-//       .get("https://jsonplaceholder.typicode.com/todos?_limit=10")
-//       .then(res => (this.todos = res.data))
-//       .catch(error => console.log(error));
-//   }
-// };
 </script>
 
 <style>
-/** {
 
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  line-height: 1.4;
-}
-
-.btn:hover {
-  background: #666;
-}
-.flexbox {
-  display: flex;
-  justify-content: space-between;
-
-  width: 100%;
-  max-width: 1800px;
-  height: 100vh;
-
-  overflow: hidden;
-
-  margin: 3px auto;
-  padding: 15px;
-
-  border: 10px solid gray;
-  border-radius: 10px;
-
-}
-
-.flexbox .board {
-  display:flex;
-  flex-direction: column;
-  width: 100%;
-  height:100vh;
-  max-width: 500px;
-  /* background: #313131; 
-
-  padding: 15px;  
-  border: 2px solid whitesmoke;
-  border-radius: 10px;
-}
-
-.flexbox .board .card {
-  padding: 15px 25px;
-  background-color: #fff;
-
-  cursor: pointer;
-  margin-bottom: 5px;
-  border-radius: 10px;
-}
-.flexbox {
-  background-image: url("https://images.pexels.com/photos/351283/pexels-photo-351283.jpeg?cs=srgb&dl=bay-beach-brazil-351283.jpg&fm=jpg");
-  background-size: 100%;
-}
-
-/*.card{
-  width:100%;
-  height:15vh;
-}*/
 .container{
   background-image: url("https://images.pexels.com/photos/351283/pexels-photo-351283.jpeg?cs=srgb&dl=bay-beach-brazil-351283.jpg&fm=jpg");
   background-size: 100%;
