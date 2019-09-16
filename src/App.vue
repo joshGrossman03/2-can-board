@@ -14,8 +14,8 @@
           <h6 class="card-title">Category: {{cards[i].category}}</h6>
           <p class="card-text">{{cards[i].description}}</p>
           <p class="card-text">Task #: {{cards[i].id}}</p>
-         
-          <a v-on:click="deleteTodo(8)" href="#" class="btn btn-primary">Delete Me</a>
+         <p v-bind:data-id="cards[i].id"></p>
+          <a v-bind:data-id="cards[i].id" v-on:click="deleteTodo(card.id)" href="#" class="btn btn-primary">Delete Me</a>
         </Card>
       </Board>
       <!--Board 2 is the In Progress-working list -->
@@ -59,7 +59,7 @@ export default {
     AddTodo,
     Board,
     Card
-  }, //cards hardcoded on the board.
+  }, 
   data() {
     return {
       cards:[],
@@ -68,8 +68,6 @@ export default {
     };
   },
 
-  //begining of lorena's code
-// end of Lorena's code
   methods: {
     deleteTodo(id) {
     
