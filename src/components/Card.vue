@@ -1,15 +1,9 @@
 <template>
 
-        <div
-    v-bind:id="id"
-    class="card"
-    :draggable="draggable"
-    @dragstart="dragStart"
-    @dragover.stop
-    
-    >
-    <slot  />
-
+        <div class="card" style="width :18rem;">
+            <div class="card-body">
+                <slot />
+            </div>
         </div> 
             
 
