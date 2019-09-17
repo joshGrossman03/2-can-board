@@ -18,9 +18,10 @@
               v-bind:data-id="cards[i].id"
               v-on:click="deleteTodo(card.id)"
               href="#"
-              class="btn btn-primary"
-            >Delete Me</a>
-          </Card>
+              class="btn btn-primary btn-sm"
+            >Delete</a>
+ <button v-on:click="updateTodo(card.id,card.title, card.category, card.description,card.status)" type="button" class="btn btn-secondary btn-sm">Move Forward</button>       
+    </Card>
         </Board>
         <!--Board 2 is the In Progress-working list -->
         <Board class="col-md-3" id="inProgress">
@@ -33,9 +34,10 @@
               v-bind:data-id="cards[i].id"
               v-on:click="deleteTodo(card.id)"
               href="#"
-              class="btn btn-primary"
-            >Delete Me</a>
-          </Card>
+              class="btn btn-primary btn-sm"
+            >Delete</a>
+ <button v-on:click="updateTodo(card.id,card.title, card.category, card.description,card.status)" type="button" class="btn btn-secondary btn-sm">Move Forward</button>          
+ </Card>
         </Board>
         <!--Board 3 is the In Progress-waiting list -->
         <Board class="col-md-3" id="inProgressWaiting">
@@ -48,9 +50,10 @@
               v-bind:data-id="cards[i].id"
               v-on:click="deleteTodo(card.id)"
               href="#"
-              class="btn btn-primary"
-            >Delete Me</a>
-          </Card>
+              class="btn btn-primary btn-sm"
+            >Delete</a>
+ <button v-on:click="updateTodo(card.id,card.title, card.category, card.description,card.status)" type="button" class="btn btn-secondary btn-sm">Move Forward</button>          
+ </Card>
         </Board>
         <!--Board 4 is the Completed list -->
         <Board class="col-md-3" id="complted">
@@ -63,8 +66,9 @@
               v-bind:data-id="cards[i].id"
               v-on:click="deleteTodo(card.id)"
               href="#"
-              class="btn btn-primary"
-            >Delete Me</a>
+              class="btn btn-primary btn-sm"
+            >Delete</a>
+           
           </Card>
         </Board>
       </div>
@@ -115,11 +119,40 @@ export default {
           title,
           category,
           description,
-          status: "inProgress"
+          status: "todo"
         })
         .then(res => (this.cards = [...this.cards, res.data]))
         .catch(error => console.log(error));
-    }
+    },
+
+     updateTodo(id,title,category,description,status){
+       
+       if (status === 'todo'){
+         status = 'inProgress';
+       }
+       else if (status === 'inProgress'){
+         status = 'inProgressWaiting';
+       }
+       else if (status === 'inProgressWaiting'){
+         status = 'done';
+       }
+      console.log(id,title,category,description,status);
+       axios
+        .put("/api/todos", {
+          id,
+          title,
+          category,
+          description,
+          status
+        }).then(res => (this.cards = [...this.cards, res.data]))
+        .catch(error => console.log(error));
+      console.log('this is updated');
+
+      axios
+        .get("/api/todos")
+        .then(res => (this.cards = res.data))
+        .catch(error => console.log(error));
+    },
   },
   created() {
     axios
