@@ -135,6 +135,9 @@ export default {
   /* background-image: url("https://images.pexels.com/photos/351283/pexels-photo-351283.jpeg?cs=srgb&dl=bay-beach-brazil-351283.jpg&fm=jpg"); */
   background-size: 100%;
 }
+.row{
+   margin-top: 20px;
+}
 @import url("https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css");
 </style>
 
