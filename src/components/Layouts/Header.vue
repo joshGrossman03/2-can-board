@@ -1,6 +1,6 @@
 <template>
     <header class="header">
-        <h1>2CanBoard</h1>
+        <h3>2canBoard</h3>
     </header>
 </template>
 
