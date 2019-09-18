@@ -25,7 +25,12 @@
         <div class="row">
           <!--Board 1 is the To Do list -->
           <Board style="padding-right:2px;" class="col-sm-12 col-md-3 col-lg-3" id="ToDos">
-            <Card style="margin-top:10px;" v-for="(card,i) in cardsFiltered" v-bind:key="i" v-show="card.status =='todo'">
+            <Card
+              style="margin-top:10px;"
+              v-for="(card,i) in cardsFiltered"
+              v-bind:key="i"
+              v-show="card.status =='todo'"
+            >
               <h5 class="card-title">{{card.title}}</h5>
               <h6 class="card-title">Category: {{card.category}}</h6>
               <p class="card-text">{{card.description}}</p>
@@ -45,7 +50,8 @@
           </Board>
           <!--Board 2 is the In Progress-working list -->
           <Board style="padding-right:2px;" class="col-sm-12 col-md-3 col-lg-3" id="inProgress">
-            <Card style="margin-top:10px;"
+            <Card
+              style="margin-top:10px;"
               v-for="(card,i) in cardsFiltered"
               v-bind:key="i"
               v-show="card.status =='inProgress'"
@@ -68,8 +74,13 @@
             </Card>
           </Board>
           <!--Board 3 is the In Progress-waiting list -->
-          <Board style="padding-right:2px;" class="col-sm-12 col-md-3 col-lg-3" id="inProgressWaiting">
-            <Card style="margin-top:10px;"
+          <Board
+            style="padding-right:2px;"
+            class="col-sm-12 col-md-3 col-lg-3"
+            id="inProgressWaiting"
+          >
+            <Card
+              style="margin-top:10px;"
               v-for="(card,i) in cardsFiltered"
               v-bind:key="i"
               v-show="card.status =='inProgressWaiting'"
@@ -93,7 +104,12 @@
           </Board>
           <!--Board 4 is the Completed list -->
           <Board style="padding-right:2px;" class="col-sm-12 col-md-3 col-lg-3" id="completed">
-            <Card style="margin-top:10px;" v-for="(card,i) in cardsFiltered" v-bind:key="i" v-show="card.status =='done'">
+            <Card
+              style="margin-top:10px;"
+              v-for="(card,i) in cardsFiltered"
+              v-bind:key="i"
+              v-show="card.status =='done'"
+            >
               <h5 class="card-title">{{card.title}}</h5>
               <h6 class="card-title">Category: {{card.category}}</h6>
               <p class="card-text">{{card.description}}</p>
@@ -107,7 +123,6 @@
             </Card>
           </Board>
         </div>
-
       </div>
     </div>
   </div>
@@ -175,7 +190,7 @@ export default {
           description,
           status: "todo"
         })
-        .then(res => (this.cards = [...this.cards, res.data]))
+        .then(res => (this.cardsFiltered = [...this.cardsFiltered, res.data]))
         .catch(error => console.log(error));
     },
 
@@ -200,7 +215,7 @@ export default {
         .catch(error => console.log(error));
       console.log("this is updated");
 
-       axios
+      axios
         .get("/api/todos")
         .then(res => (this.cardsFiltered = this.cards = res.data))
         .catch(error => console.log(error));
@@ -226,6 +241,5 @@ export default {
   margin-top: 20px;
 }
 @import url("https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css");
-
 </style>
 
