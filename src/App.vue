@@ -3,7 +3,7 @@
     <Header />
     <div
       class="view"
-      style="background-image: url('https://images.pexels.com/photos/351283/pexels-photo-351283.jpeg?cs=srgb&dl=bay-beach-brazil-351283.jpg&fm=jpg');background-repeat:repeat; background-size: cover; background-position: center; height:100vh"
+      style="background-image: url('https://images.pexels.com/photos/351283/pexels-photo-351283.jpeg?cs=srgb&dl=bay-beach-brazil-351283.jpg&fm=jpg');background-repeat:repeat; background-size: cover; background-position: center; background-attachment: fixed;"
     >
       <div class="container">
         <AddTodo v-on:add-todo="addTodo" />
@@ -161,7 +161,7 @@ export default {
 
       axios
         .get("/api/todos")
-        .then(res => (this.cards = res.data))
+        .then(res => (this.cardsFiltered = this.cards = res.data))
         .catch(error => console.log(error));
     },
 
@@ -200,9 +200,9 @@ export default {
         .catch(error => console.log(error));
       console.log("this is updated");
 
-      axios
+       axios
         .get("/api/todos")
-        .then(res => (this.cards = res.data))
+        .then(res => (this.cardsFiltered = this.cards = res.data))
         .catch(error => console.log(error));
     }
   },
