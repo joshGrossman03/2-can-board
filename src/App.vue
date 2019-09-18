@@ -24,8 +24,8 @@
 
         <div class="row">
           <!--Board 1 is the To Do list -->
-          <Board class="col-md-3" id="ToDos">
-            <Card v-for="(card,i) in cardsFiltered" v-bind:key="i" v-show="card.status =='todo'">
+          <Board style="padding-right:2px;" class="col-sm-12 col-md-3 col-lg-3" id="ToDos">
+            <Card style="margin-top:10px;" v-for="(card,i) in cardsFiltered" v-bind:key="i" v-show="card.status =='todo'">
               <h5 class="card-title">{{card.title}}</h5>
               <h6 class="card-title">Category: {{card.category}}</h6>
               <p class="card-text">{{card.description}}</p>
@@ -44,8 +44,8 @@
             </Card>
           </Board>
           <!--Board 2 is the In Progress-working list -->
-          <Board class="col-md-3" id="inProgress">
-            <Card
+          <Board style="padding-right:2px;" class="col-sm-12 col-md-3 col-lg-3" id="inProgress">
+            <Card style="margin-top:10px;"
               v-for="(card,i) in cardsFiltered"
               v-bind:key="i"
               v-show="card.status =='inProgress'"
@@ -68,8 +68,8 @@
             </Card>
           </Board>
           <!--Board 3 is the In Progress-waiting list -->
-          <Board class="col-md-3" id="inProgressWaiting">
-            <Card
+          <Board style="padding-right:2px;" class="col-sm-12 col-md-3 col-lg-3" id="inProgressWaiting">
+            <Card style="margin-top:10px;"
               v-for="(card,i) in cardsFiltered"
               v-bind:key="i"
               v-show="card.status =='inProgressWaiting'"
@@ -92,8 +92,8 @@
             </Card>
           </Board>
           <!--Board 4 is the Completed list -->
-          <Board class="col-md-3" id="completed">
-            <Card v-for="(card,i) in cardsFiltered" v-bind:key="i" v-show="card.status =='done'">
+          <Board style="padding-right:2px;" class="col-sm-12 col-md-3 col-lg-3" id="completed">
+            <Card style="margin-top:10px;" v-for="(card,i) in cardsFiltered" v-bind:key="i" v-show="card.status =='done'">
               <h5 class="card-title">{{card.title}}</h5>
               <h6 class="card-title">Category: {{card.category}}</h6>
               <p class="card-text">{{card.description}}</p>
@@ -107,6 +107,7 @@
             </Card>
           </Board>
         </div>
+
       </div>
     </div>
   </div>
@@ -225,5 +226,6 @@ export default {
   margin-top: 20px;
 }
 @import url("https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css");
+
 </style>
 
