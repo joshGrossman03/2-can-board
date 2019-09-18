@@ -8,8 +8,8 @@
 
       <div class="row">
         <!--Board 1 is the To Do list -->
-        <Board class="col-md-3" id="ToDos">
-          <Card v-for="(card,i) in cards" v-bind:key="i" v-show="card.status =='todo'">
+        <Board style="padding-right:2px;" class="col-sm-12 col-md-3 col-lg-3" id="ToDos">
+          <Card style="margin-top:10px;" v-for="(card,i) in cards" v-bind:key="i" v-show="card.status =='todo'">
             <h5 class="card-title">{{cards[i].title}}</h5>
             <h6 class="card-title">Category: {{cards[i].category}}</h6>
             <p class="card-text">{{cards[i].description}}</p>
@@ -24,8 +24,8 @@
     </Card>
         </Board>
         <!--Board 2 is the In Progress-working list -->
-        <Board class="col-md-3" id="inProgress">
-             <Card v-for="(card,i) in cards" v-bind:key="i" v-show="card.status =='inProgress'">
+        <Board style="padding-right:2px;" class="col-sm-12 col-md-3 col-lg-3" id="inProgress">
+             <Card style="margin-top:10px;" v-for="(card,i) in cards" v-bind:key="i" v-show="card.status =='inProgress'">
             <h5 class="card-title">{{cards[i].title}}</h5>
             <h6 class="card-title">Category: {{cards[i].category}}</h6>
             <p class="card-text">{{cards[i].description}}</p>
@@ -40,8 +40,8 @@
  </Card>
         </Board>
         <!--Board 3 is the In Progress-waiting list -->
-        <Board class="col-md-3" id="inProgressWaiting">
-            <Card v-for="(card,i) in cards" v-bind:key="i" v-show="card.status =='inProgressWaiting'">
+        <Board style="padding-right:2px;" class="col-sm-12 col-md-3 col-lg-3" id="inProgressWaiting">
+            <Card style="margin-top:10px;" v-for="(card,i) in cards" v-bind:key="i" v-show="card.status =='inProgressWaiting'">
             <h5 class="card-title">{{cards[i].title}}</h5>
             <h6 class="card-title">Category: {{cards[i].category}}</h6>
             <p class="card-text">{{cards[i].description}}</p>
@@ -56,8 +56,8 @@
  </Card>
         </Board>
         <!--Board 4 is the Completed list -->
-        <Board class="col-md-3" id="complted">
-            <Card v-for="(card,i) in cards" v-bind:key="i" v-show="card.status =='done'">
+        <Board style="padding-right:2px;" class="col-sm-12 col-md-3 col-lg-3" id="complted">
+            <Card style="margin-top:10px;" v-for="(card,i) in cards" v-bind:key="i" v-show="card.status =='done'">
             <h5 class="card-title">{{cards[i].title}}</h5>
             <h6 class="card-title">Category: {{cards[i].category}}</h6>
             <p class="card-text">{{cards[i].description}}</p>
@@ -172,5 +172,6 @@ export default {
    margin-top: 20px;
 }
 @import url("https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css");
+
 </style>
 
