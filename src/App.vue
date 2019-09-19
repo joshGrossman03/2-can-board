@@ -10,23 +10,44 @@
 
         <!-- Button to toggle view btween All, Personal, and Team -->
         <div class="row">
-          <div class="col-sm">
-            <button :class="{active: filter = 'all'}" @click="runFilter('all')">All</button>
+          <div class="col-sm col-md col-lg">
+            <button
+              class="viewFilters allBtn"
+              :class="{active: filter = 'all'}"
+              @click="runFilter('all')"
+            >View All Tasks</button>
           </div>
-          <div class="col-sm">
-            <button :class="{active: filter = 'personal'}" @click="runFilter('personal')">Personal</button>
-          </div>
-          <button :class="{active: filter = 'team'}" @click="runFilter('team')">Team</button>
         </div>
         <div class="row">
-          <button v-if="showClearDoneBtn" @click="clearDone">Clear Done Tasks</button>
+          <div class="col-sm-2 col-md-2 col-lg-2">
+            <button
+              class="viewFilters personalFilter"
+              :class="{active: filter = 'personal'}"
+              @click="runFilter('personal')"
+            >View Personal Tasks</button>
+          </div>
+
+          <div class="col-sm-4 col-md-4 col-lg-4">
+            <button
+              class="viewFilters teamFilter"
+              :class="{active: filter = 'team'}"
+              @click="runFilter('team')"
+            >View Team Tasks</button>
+          </div>
+
+          <!-- Button to clear "Done" items -->
+          <div class="col-sm-6 col-md-6 col-lg-6">
+            <button class="clearDoneBtn" @click="clearDone('done')">Clear Done Tasks</button>
+          </div>
         </div>
 
+        <!-- start task board section -->
         <div class="row">
           <!--Board 1 is the To Do list -->
-          <Board style="padding-right:2px;" class="col-sm-12 col-md-3 col-lg-3" id="ToDos">
+          <Board class="col-sm-12 col-md-3 col-lg-3 boards" id="ToDos">
+            <h3>To Do</h3>
             <Card
-              style="margin-top:10px;"
+              class="cardStyle"
               v-for="(card,i) in cardsFiltered"
               v-bind:key="i"
               v-show="card.status =='todo'"
@@ -35,23 +56,27 @@
               <h6 class="card-title">Category: {{card.category}}</h6>
               <p class="card-text">{{card.description}}</p>
               <p v-bind:data-id="card.id"></p>
-              <a
-                v-bind:data-id="card.id"
-                v-on:click="deleteTodo(card.id)"
-                href="#"
-                class="btn btn-primary btn-sm"
-              >Delete</a>
+
+              <!-- Button that advances card to next status -->
               <button
                 v-on:click="updateTodo(card.id,card.title, card.category, card.description,card.status)"
                 type="button"
-                class="btn btn-secondary btn-sm"
+                class="btn btn-secondary btn-sm cardBtns"
               >Move Forward</button>
+              <!-- Button that will delete a task/card to next status -->
+              <button
+                v-bind:data-id="card.id"
+                v-on:click="deleteTodo(card.id)"
+                href="#"
+                class="btn btn-primary btn-sm cardBtns"
+              >Delete</button>
             </Card>
           </Board>
           <!--Board 2 is the In Progress-working list -->
-          <Board style="padding-right:2px;" class="col-sm-12 col-md-3 col-lg-3" id="inProgress">
+          <Board class="col-sm-12 col-md-3 col-lg-3 boards" id="inProgress">
+            <h3>In Progress</h3>
             <Card
-              style="margin-top:10px;"
+              class="cardStyle"
               v-for="(card,i) in cardsFiltered"
               v-bind:key="i"
               v-show="card.status =='inProgress'"
@@ -60,27 +85,26 @@
               <h6 class="card-title">Category: {{card.category}}</h6>
               <p class="card-text">{{card.description}}</p>
               <p v-bind:data-id="card.id"></p>
-              <a
-                v-bind:data-id="card.id"
-                v-on:click="deleteTodo(card.id)"
-                href="#"
-                class="btn btn-primary btn-sm"
-              >Delete</a>
+              <!-- Button that advances card to next status -->
               <button
                 v-on:click="updateTodo(card.id,card.title, card.category, card.description,card.status)"
                 type="button"
-                class="btn btn-secondary btn-sm"
+                class="btn btn-secondary btn-sm cardBtns"
               >Move Forward</button>
+              <!-- Button that will delete a task/card -->
+              <button
+                v-bind:data-id="card.id"
+                v-on:click="deleteTodo(card.id)"
+                href="#"
+                class="btn btn-primary btn-sm cardBtns"
+              >Delete</button>
             </Card>
           </Board>
           <!--Board 3 is the In Progress-waiting list -->
-          <Board
-            style="padding-right:2px;"
-            class="col-sm-12 col-md-3 col-lg-3"
-            id="inProgressWaiting"
-          >
+          <Board class="col-sm-12 col-md-3 col-lg-3 boards" id="inProgressWaiting">
+            <h3>In Progress - Waiting</h3>
             <Card
-              style="margin-top:10px;"
+              class="cardStyle"
               v-for="(card,i) in cardsFiltered"
               v-bind:key="i"
               v-show="card.status =='inProgressWaiting'"
@@ -89,23 +113,26 @@
               <h6 class="card-title">Category: {{card.category}}</h6>
               <p class="card-text">{{card.description}}</p>
               <p v-bind:data-id="card.id"></p>
-              <a
-                v-bind:data-id="card.id"
-                v-on:click="deleteTodo(card.id)"
-                href="#"
-                class="btn btn-primary btn-sm"
-              >Delete</a>
+              <!-- Button that will move a task/card to next status -->
               <button
                 v-on:click="updateTodo(card.id,card.title, card.category, card.description,card.status)"
                 type="button"
-                class="btn btn-secondary btn-sm"
+                class="btn btn-secondary btn-sm cardBtns"
               >Move Forward</button>
+              <!-- Button that will delete a task/card -->
+              <button
+                v-bind:data-id="card.id"
+                v-on:click="deleteTodo(card.id)"
+                href="#"
+                class="btn btn-primary btn-sm cardBtns"
+              >Delete</button>
             </Card>
           </Board>
           <!--Board 4 is the Completed list -->
-          <Board style="padding-right:2px;" class="col-sm-12 col-md-3 col-lg-3" id="completed">
+          <Board class="col-sm-12 col-md-3 col-lg-3 boards" id="completed">
+            <h3>Done!</h3>
             <Card
-              style="margin-top:10px;"
+              class="cardStyle"
               v-for="(card,i) in cardsFiltered"
               v-bind:key="i"
               v-show="card.status =='done'"
@@ -114,12 +141,13 @@
               <h6 class="card-title">Category: {{card.category}}</h6>
               <p class="card-text">{{card.description}}</p>
               <p v-bind:data-id="card.id"></p>
-              <a
+              <!-- Button that will delete a task/card-->
+              <button
                 v-bind:data-id="card.id"
                 v-on:click="deleteTodo(card.id)"
                 href="#"
-                class="btn btn-primary btn-sm"
-              >Delete</a>
+                class="btn btn-primary btn-sm cardBtns"
+              >Delete</button>
             </Card>
           </Board>
         </div>
@@ -221,6 +249,24 @@ export default {
         .catch(error => console.log(error));
     }
   },
+
+  //Clears the done cards when user clicks "cLear done" button
+  clearDone(status) {
+    {
+      if (card.status == "done")
+        axios
+          .delete("/api/todos/:status")
+          .then(res => (this.cards = res.data))
+          .catch(error => console.log(error));
+
+      axios
+        .get("/api/todos")
+        .then(res => (this.cardsFiltered = this.cards = res.data))
+        .catch(error => console.log(error));
+    }
+  },
+
+  //Gets tasks from db
   created() {
     axios
       .get("/api/todos")
@@ -233,13 +279,77 @@ export default {
 </script>
 
 <style>
+@import url("https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css");
+
 .container {
   /* background-image: url("https://images.pexels.com/photos/351283/pexels-photo-351283.jpeg?cs=srgb&dl=bay-beach-brazil-351283.jpg&fm=jpg"); */
   background-size: 100%;
+  max-width: 80%;
 }
-.row {
-  margin-top: 20px;
+
+h3 {
+  text-align: center;
 }
-@import url("https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css");
+.clearDoneBtn {
+  font-size: 14px;
+  background-color: white;
+  appearance: none;
+  border: 1px solid black;
+  border-radius: 0.25rem;
+  margin: 10px 10px 10px 10px;
+  margin-left: 60%;
+}
+.clearDoneBtn:hover {
+  background: lightsalmon;
+}
+.clearDoneBtn:focus {
+  outline: none;
+}
+.clearDone:active {
+  background: lightsalmon;
+}
+
+.allBtn {
+  margin: 10px 0px 4px 10px;
+}
+
+.personalFilter {
+  margin: 10px 0px 20px 55px;
+}
+
+.teamFilter {
+  margin: 10px 0px 20px 0px;
+}
+.viewFilters {
+  font-size: 14px;
+  background-color: white;
+  appearance: none;
+  border: 1px solid black;
+  border-radius: 0.25rem;
+}
+.viewFilters:hover {
+  background: lightskyblue;
+}
+.viewFilters:focus {
+  outline: none;
+}
+.viewFilters:active {
+  background: lightskyblue;
+}
+
+.boards {
+  border: 1.5pt solid darkorange;
+  border-radius: 0.5rem;
+  padding-top: 0.5%;
+  padding-bottom: 0.5%;
+}
+
+.cardStyle {
+  margin: 2px 2px 2px 2px;
+}
+
+.cardBtns {
+  margin: 10px 20px 10px 10px;
+}
 </style>
 
