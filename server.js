@@ -24,7 +24,9 @@ app.use(express.json());
 // Static directory
 var serveStatic = require("serve-static");
 app.use(serveStatic(__dirname + "/dist"));
-
+app.get(/.*/,function (req, res){
+  res.sendfile(__dirname + "/dist/index.html");
+});
 // Routes
 // =============================================================
 require("./src/routes/api-routes.js")(app);
