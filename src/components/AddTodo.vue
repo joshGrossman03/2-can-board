@@ -1,36 +1,37 @@
 <template>
-
   <div>
-    <button @click="show = !show" class="btn btn-info">Add Task</button>
+    <button @click="show = !show" class="btn btn-info addTaskBtn">Add Task</button>
     <form v-if="show">
       <div class="form-group">
-        <label for="Input1">Task Title</label>
+        <label for="title">Task Title</label>
         <input
           type="text"
           v-model="title"
           class="form-control"
-          id="Input1"
+          id="title"
           placeholder="Add Title..."
         />
       </div>
       <div class="form-group">
-
         <label for="cat">Category</label>
         <select v-model="category" class="form-control" id="cat">
-
           <option>...</option>
           <option>Personal</option>
           <option>Team</option>
         </select>
       </div>
       <div class="form-group">
-
         <label for="desc">Description</label>
-        <textarea v-model="description" class="form-control" id="desc" rows="3" placeholder="description" ></textarea>
-       {{this.title}}{{this.category}}{{this.description}}
+        <textarea
+          v-model="description"
+          class="form-control"
+          id="desc"
+          rows="3"
+          placeholder="What do you have to do?"
+        ></textarea>
+        {{this.title}}{{this.category}}{{this.description}}
       </div>
-       <button @click="addTodo">Submit</button> 
-
+      <button class="submitTask" @click="addTodo">Submit</button>
     </form>
   </div>
 </template>
@@ -42,8 +43,8 @@ export default {
   data() {
     return {
       title: "",
-      category:"",
-      description:"",
+      category: "",
+      description: "",
       show: false
     };
   },
@@ -54,9 +55,7 @@ export default {
         title: this.title,
         category: this.category,
         description: this.description,
-        status: "todo",
-        
-       
+        status: "todo"
       };
       //send up to parent
       this.$emit("add-todo", createTodo);
@@ -73,4 +72,12 @@ export default {
 
 <style scoped>
 @import url("https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css");
+
+.addTaskBtn {
+  margin: 10px 10px 10px 10px;
+}
+
+.submitTask {
+  margin: 0px 0px 20px 10px;
+}
 </style>
