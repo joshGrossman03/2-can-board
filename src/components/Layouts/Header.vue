@@ -1,6 +1,6 @@
 <template>
     <header class="header">
-        <h3>2canBoard</h3>
+         <img src="https://slack-imgs.com/?c=1&o1=ro&url=https%3A%2F%2Fi.imgur.com%2FLEB5cg0.png"  width="400" height="80">
     </header>
 </template>
 
