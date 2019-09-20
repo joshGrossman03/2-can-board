@@ -247,25 +247,26 @@ export default {
         .get("/api/todos")
         .then(res => (this.cardsFiltered = this.cards = res.data))
         .catch(error => console.log(error));
-    }
-  },
+    },
 
-  //Clears the done cards when user clicks "cLear done" button
-  clearDone(status) {
-    {
-      if (card.status == "done")
+    //Clears the done cards when user clicks "cLear done" button
+    clearDone(status) {
+      {
+        let cardsDone = this.cards.filter(card => card.status == "done");
+
+        console.log(cardsDone);
         axios
-          .delete("/api/todos/:status")
+          .delete("/api/todos", { data: cardsDone })
           .then(res => (this.cards = res.data))
           .catch(error => console.log(error));
 
-      axios
-        .get("/api/todos")
-        .then(res => (this.cardsFiltered = this.cards = res.data))
-        .catch(error => console.log(error));
+        axios
+          .get("/api/todos")
+          .then(res => (this.cardsFiltered = this.cards = res.data))
+          .catch(error => console.log(error));
+      }
     }
   },
-
   //Gets tasks from db
   created() {
     axios
