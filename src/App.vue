@@ -286,7 +286,7 @@ export default {
   max-width: 80%;
 }
 .view{
- background-image: url('C:/Users/loren/Desktop/2-can-board/public/beach.jpg');
+ background-image: url('../public/beach.jpg');
  background-repeat:repeat; 
  background-size: cover; 
  background-position: center; 
