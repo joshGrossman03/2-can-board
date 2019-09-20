@@ -19,7 +19,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-sm-2 col-md-2 col-lg-2">
+          <div class="col-sm-3 col-md-3 col-lg-3">
             <button
               class="viewFilters personalFilter"
               :class="{active: filter = 'personal'}"
@@ -36,7 +36,7 @@
           </div>
 
           <!-- Button to clear "Done" items -->
-          <div class="col-sm-6 col-md-6 col-lg-6">
+          <div class="col-sm-5 col-md-5 col-lg-5">
             <button class="clearDoneBtn" @click="clearDone('done')">Clear Done Tasks</button>
           </div>
         </div>
@@ -45,7 +45,7 @@
         <div class="row">
           <!--Board 1 is the To Do list -->
           <Board class="col-sm-12 col-md-3 col-lg-3 boards" id="ToDos">
-            <h3>To Do</h3>
+            <p class="boardHeader">To Do</p>
             <Card
             
               v-for="(card,i) in cardsFiltered"
@@ -74,7 +74,7 @@
           </Board>
           <!--Board 2 is the In Progress-working list -->
           <Board class="col-sm-12 col-md-3 col-lg-3 boards" id="inProgress">
-            <h3>In Progress</h3>
+            <p class="boardHeader">In Progress</p>
             <Card
               
               v-for="(card,i) in cardsFiltered"
@@ -102,7 +102,7 @@
           </Board>
           <!--Board 3 is the In Progress-waiting list -->
           <Board class="col-sm-12 col-md-3 col-lg-3 boards" id="inProgressWaiting">
-            <h3>In Progress - Waiting</h3>
+            <p class="boardHeader">In Progress - Waiting</p>
             <Card
             
               v-for="(card,i) in cardsFiltered"
@@ -130,7 +130,7 @@
           </Board>
           <!--Board 4 is the Completed list -->
           <Board class="col-sm-12 col-md-3 col-lg-3 boards" id="completed">
-            <h3>Done!</h3>
+            <p class="boardHeader">Done!</p>
             <Card
               
               v-for="(card,i) in cardsFiltered"
@@ -347,16 +347,18 @@ h3 {
    padding: 0%;
    margin: 0px;
 }
-/*
-.boards {
-  border: 1.5pt solid darkorange;
-  border-radius: 0.5rem;
-  padding-top: 0.5%;
-  padding-bottom: 0.5%;
-} */
 
-/* .cardBtns {
-  margin: 10px 20px 10px 10px;
-} */
+
+.boardHeader {
+  font-size: 24pt;
+  color: white;
+  background-color: rgba(243, 157, 18, 0.212);
+  text-align: center;
+}
+
+.cardStyle {
+  margin: 2px 2px 2px 2px;
+}
+
 </style>
 
