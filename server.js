@@ -23,10 +23,8 @@ app.use(express.json());
 
 // Static directory
 
-app.use(express.static(__dirname + "/dist"));
-app.get(/.*/, function (req, res){
-  res.sendfile(__dirname + "/dist/index.html");
-});
+var serveStatic = require("serve-static");
+app.use(serveStatic(__dirname + "/dist"));
 
 // Routes
 // =============================================================
