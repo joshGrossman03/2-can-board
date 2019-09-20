@@ -70,26 +70,24 @@ module.exports = function(app) {
   // DELETE route for deleting all done tasks
   app.delete("/api/todos", function(req, res) {
     let cardIds = req.body.map(card => card.id);
-    console.log(cardIds);
     db.Todo.destroy({
       where: {
         id: cardIds
       }
-    }).then(function(dbTodo) {
+    }).then(function() {
       db.Todo.findAll({}).then(function(dbTodo) {
         res.json(dbTodo);
       });
     });
-
-    // PUT route for updating todos
-    app.put("/api/todos", function(req, res) {
-      db.Todo.update(req.body, {
-        where: {
-          id: req.body.id
-        }
-      }).then(function(dbTodo) {
-        res.json(dbTodo);
-      });
+  });
+  // PUT route for updating todos
+  app.put("/api/todos", function(req, res) {
+    db.Todo.update(req.body, {
+      where: {
+        id: req.body.id
+      }
+    }).then(function(dbTodo) {
+      res.json(dbTodo);
     });
   });
 };
