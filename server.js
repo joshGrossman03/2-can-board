@@ -22,7 +22,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Static directory
-
 var serveStatic = require("serve-static");
 app.use(serveStatic(__dirname + "/dist"));
 

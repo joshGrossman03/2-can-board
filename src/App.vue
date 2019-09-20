@@ -1,10 +1,7 @@
 <template>
   <div id="app">
     <Header />
-    <div
-      class="view"
-     
-    >
+    <div class="view">
       <div class="container">
         <AddTodo v-on:add-todo="addTodo" />
 
@@ -46,12 +43,7 @@
           <!--Board 1 is the To Do list -->
           <Board class="col-sm-12 col-md-3 col-lg-3 boards" id="ToDos">
             <p class="boardHeader">To Do</p>
-            <Card
-            
-              v-for="(card,i) in cardsFiltered"
-              v-bind:key="i"
-              v-show="card.status =='todo'"
-            >
+            <Card v-for="(card,i) in cardsFiltered" v-bind:key="i" v-show="card.status =='todo'">
               <h5 class="card-title">{{card.title}}</h5>
               <h6 class="card-title">Category: {{card.category}}</h6>
               <p class="card-text">{{card.description}}</p>
@@ -61,7 +53,7 @@
               <button
                 v-on:click="updateTodo(card.id,card.title, card.category, card.description,card.status)"
                 type="button"
-                class="btn btn-secondary btn-sm"
+                class="btn btn-secondary btn-sm cardBtn"
               >Move Forward</button>
               <!-- Button that will delete a task/card to next status -->
               <button
@@ -76,7 +68,6 @@
           <Board class="col-sm-12 col-md-3 col-lg-3 boards" id="inProgress">
             <p class="boardHeader">In Progress</p>
             <Card
-              
               v-for="(card,i) in cardsFiltered"
               v-bind:key="i"
               v-show="card.status =='inProgress'"
@@ -89,14 +80,14 @@
               <button
                 v-on:click="updateTodo(card.id,card.title, card.category, card.description,card.status)"
                 type="button"
-                class="btn btn-secondary btn-sm"
+                class="btn btn-secondary btn-sm cardBtn"
               >Move Forward</button>
               <!-- Button that will delete a task/card -->
               <button
                 v-bind:data-id="card.id"
                 v-on:click="deleteTodo(card.id)"
                 href="#"
-                class="btn btn-primary btn-sm "
+                class="btn btn-primary btn-sm"
               >Delete</button>
             </Card>
           </Board>
@@ -104,7 +95,6 @@
           <Board class="col-sm-12 col-md-3 col-lg-3 boards" id="inProgressWaiting">
             <p class="boardHeader">In Progress - Waiting</p>
             <Card
-            
               v-for="(card,i) in cardsFiltered"
               v-bind:key="i"
               v-show="card.status =='inProgressWaiting'"
@@ -117,26 +107,21 @@
               <button
                 v-on:click="updateTodo(card.id,card.title, card.category, card.description,card.status)"
                 type="button"
-                class="btn btn-secondary btn-sm "
+                class="btn btn-secondary btn-sm cardBtn"
               >Move Forward</button>
               <!-- Button that will delete a task/card -->
               <button
                 v-bind:data-id="card.id"
                 v-on:click="deleteTodo(card.id)"
                 href="#"
-                class="btn btn-primary btn-sm "
+                class="btn btn-primary btn-sm"
               >Delete</button>
             </Card>
           </Board>
           <!--Board 4 is the Completed list -->
           <Board class="col-sm-12 col-md-3 col-lg-3 boards" id="completed">
             <p class="boardHeader">Done!</p>
-            <Card
-              
-              v-for="(card,i) in cardsFiltered"
-              v-bind:key="i"
-              v-show="card.status =='done'"
-            >
+            <Card v-for="(card,i) in cardsFiltered" v-bind:key="i" v-show="card.status =='done'">
               <h5 class="card-title">{{card.title}}</h5>
               <h6 class="card-title">Category: {{card.category}}</h6>
               <p class="card-text">{{card.description}}</p>
@@ -181,16 +166,12 @@ export default {
 
   methods: {
     runFilter(filter) {
-      console.log("filter running");
       if (filter == "all") {
         this.cardsFiltered = this.cards;
       } else if (filter == "personal") {
         this.cardsFiltered = this.cards.filter(
           card => card.category == "Personal"
         );
-        console.log("Personal tasks");
-        console.log(this.cardsFiltered);
-        //console.log(this.cards);
       } else if (filter == "team") {
         this.cardsFiltered = this.cards.filter(card => card.category == "Team");
       }
@@ -239,9 +220,8 @@ export default {
           description,
           status
         })
-        .then(res => (this.cards = [...this.cards, res.data]))
+        .then(res => (this.cardsFiltered = [...this.cardsFiltered, res.data]))
         .catch(error => console.log(error));
-      console.log("this is updated");
 
       axios
         .get("/api/todos")
@@ -253,13 +233,10 @@ export default {
     clearDone(status) {
       {
         let cardsDone = this.cards.filter(card => card.status == "done");
-
-        console.log(cardsDone);
         axios
           .delete("/api/todos", { data: cardsDone })
           .then(res => (this.cards = res.data))
           .catch(error => console.log(error));
-
         axios
           .get("/api/todos")
           .then(res => (this.cardsFiltered = this.cards = res.data))
@@ -282,16 +259,16 @@ export default {
 <style>
 @import url("https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css");
 
-.container{
+.container {
   background-size: 100%;
   max-width: 80%;
 }
-.view{
- background-image: url('../public/beach.jpg');
- background-repeat:repeat; 
- background-size: cover; 
- background-position: center; 
- background-attachment: fixed;
+.view {
+  background-image: url("../public/beach.jpg");
+  background-repeat: repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
 
 h3 {
@@ -343,11 +320,10 @@ h3 {
 .viewFilters:active {
   background: lightskyblue;
 }
-.card{
-   padding: 0%;
-   margin: 0px;
+.card {
+  padding: 0%;
+  margin: 0px;
 }
-
 
 .boardHeader {
   font-size: 24pt;
@@ -356,9 +332,8 @@ h3 {
   text-align: center;
 }
 
-.cardStyle {
-  margin: 2px 2px 2px 2px;
+.cardBtn {
+  margin-right: 12%;
 }
-
 </style>
 

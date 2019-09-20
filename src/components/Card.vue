@@ -1,5 +1,5 @@
 <template>
-  <div class="card" style="width: auto;">
+  <div class="card cardStyle" style="width: auto;">
     <div class="card-body">
       <slot />
     </div>
@@ -24,4 +24,8 @@ export default {
 
 <style scoped>
 @import url("https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css");
+
+.cardStyle {
+  margin: 2px 2px 2px 2px;
+}
 </style>
