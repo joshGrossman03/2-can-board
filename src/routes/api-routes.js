@@ -44,9 +44,8 @@ module.exports = function(app) {
   // Todo route for saving a new todo to the db
   app.post("/api/todos", function(req, res) {
     console.log(req.body);
-    
+
     db.Todo.create({
-      
       title: req.body.title,
       category: req.body.category,
       description: req.body.description,
@@ -57,7 +56,7 @@ module.exports = function(app) {
     });
   });
 
-  // DELETE route for deleting todos
+  // DELETE route for deleting a single task
   app.delete("/api/todos/:id", function(req, res) {
     db.Todo.destroy({
       where: {
@@ -68,14 +67,29 @@ module.exports = function(app) {
     });
   });
 
-  // PUT route for updating todos
-  app.put("/api/todos", function(req, res) {
-    db.Todo.update(req.body, {
+  // DELETE route for deleting all done tasks
+  app.delete("/api/todos", function(req, res) {
+    let cardIds = req.body.map(card => card.id);
+    console.log(cardIds);
+    db.Todo.destroy({
       where: {
-        id: req.body.id
+        id: cardIds
       }
     }).then(function(dbTodo) {
-      res.json(dbTodo);
+      db.Todo.findAll({}).then(function(dbTodo) {
+        res.json(dbTodo);
+      });
+    });
+
+    // PUT route for updating todos
+    app.put("/api/todos", function(req, res) {
+      db.Todo.update(req.body, {
+        where: {
+          id: req.body.id
+        }
+      }).then(function(dbTodo) {
+        res.json(dbTodo);
+      });
     });
   });
 };
