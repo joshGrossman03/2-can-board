@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id ="board">
         
     <div
     v-bind:id="id"
@@ -36,6 +36,11 @@ export default {
 <style scoped>
 
 @import url("https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css");
-
+#board{
+  border: 1.5pt solid darkorange;
+  border-radius: 0.5rem;
+  padding-top: 0.5%;
+  padding-bottom: 0.5%;
+}
 </style>
 

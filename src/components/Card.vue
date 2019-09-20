@@ -1,5 +1,5 @@
 <template>
-  <div class="card" style="width :18rem;">
+  <div class="card" style="width: auto;">
     <div class="card-body">
       <slot />
     </div>

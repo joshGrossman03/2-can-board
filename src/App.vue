@@ -3,7 +3,7 @@
     <Header />
     <div
       class="view"
-      style="background-image: url('https://images.pexels.com/photos/351283/pexels-photo-351283.jpeg?cs=srgb&dl=bay-beach-brazil-351283.jpg&fm=jpg');background-repeat:repeat; background-size: cover; background-position: center; background-attachment: fixed;"
+     
     >
       <div class="container">
         <AddTodo v-on:add-todo="addTodo" />
@@ -47,7 +47,7 @@
           <Board class="col-sm-12 col-md-3 col-lg-3 boards" id="ToDos">
             <h3>To Do</h3>
             <Card
-              class="cardStyle"
+            
               v-for="(card,i) in cardsFiltered"
               v-bind:key="i"
               v-show="card.status =='todo'"
@@ -61,14 +61,14 @@
               <button
                 v-on:click="updateTodo(card.id,card.title, card.category, card.description,card.status)"
                 type="button"
-                class="btn btn-secondary btn-sm cardBtns"
+                class="btn btn-secondary btn-sm"
               >Move Forward</button>
               <!-- Button that will delete a task/card to next status -->
               <button
                 v-bind:data-id="card.id"
                 v-on:click="deleteTodo(card.id)"
                 href="#"
-                class="btn btn-primary btn-sm cardBtns"
+                class="btn btn-primary btn-sm"
               >Delete</button>
             </Card>
           </Board>
@@ -76,7 +76,7 @@
           <Board class="col-sm-12 col-md-3 col-lg-3 boards" id="inProgress">
             <h3>In Progress</h3>
             <Card
-              class="cardStyle"
+              
               v-for="(card,i) in cardsFiltered"
               v-bind:key="i"
               v-show="card.status =='inProgress'"
@@ -89,14 +89,14 @@
               <button
                 v-on:click="updateTodo(card.id,card.title, card.category, card.description,card.status)"
                 type="button"
-                class="btn btn-secondary btn-sm cardBtns"
+                class="btn btn-secondary btn-sm"
               >Move Forward</button>
               <!-- Button that will delete a task/card -->
               <button
                 v-bind:data-id="card.id"
                 v-on:click="deleteTodo(card.id)"
                 href="#"
-                class="btn btn-primary btn-sm cardBtns"
+                class="btn btn-primary btn-sm "
               >Delete</button>
             </Card>
           </Board>
@@ -104,7 +104,7 @@
           <Board class="col-sm-12 col-md-3 col-lg-3 boards" id="inProgressWaiting">
             <h3>In Progress - Waiting</h3>
             <Card
-              class="cardStyle"
+            
               v-for="(card,i) in cardsFiltered"
               v-bind:key="i"
               v-show="card.status =='inProgressWaiting'"
@@ -117,14 +117,14 @@
               <button
                 v-on:click="updateTodo(card.id,card.title, card.category, card.description,card.status)"
                 type="button"
-                class="btn btn-secondary btn-sm cardBtns"
+                class="btn btn-secondary btn-sm "
               >Move Forward</button>
               <!-- Button that will delete a task/card -->
               <button
                 v-bind:data-id="card.id"
                 v-on:click="deleteTodo(card.id)"
                 href="#"
-                class="btn btn-primary btn-sm cardBtns"
+                class="btn btn-primary btn-sm "
               >Delete</button>
             </Card>
           </Board>
@@ -132,7 +132,7 @@
           <Board class="col-sm-12 col-md-3 col-lg-3 boards" id="completed">
             <h3>Done!</h3>
             <Card
-              class="cardStyle"
+              
               v-for="(card,i) in cardsFiltered"
               v-bind:key="i"
               v-show="card.status =='done'"
@@ -146,7 +146,7 @@
                 v-bind:data-id="card.id"
                 v-on:click="deleteTodo(card.id)"
                 href="#"
-                class="btn btn-primary btn-sm cardBtns"
+                class="btn btn-primary btn-sm"
               >Delete</button>
             </Card>
           </Board>
@@ -282,10 +282,16 @@ export default {
 <style>
 @import url("https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css");
 
-.container {
-  /* background-image: url("https://images.pexels.com/photos/351283/pexels-photo-351283.jpeg?cs=srgb&dl=bay-beach-brazil-351283.jpg&fm=jpg"); */
+.container{
   background-size: 100%;
   max-width: 80%;
+}
+.view{
+ background-image: url('../public/beach.jpg');
+ background-repeat:repeat; 
+ background-size: cover; 
+ background-position: center; 
+ background-attachment: fixed;
 }
 
 h3 {
@@ -337,20 +343,20 @@ h3 {
 .viewFilters:active {
   background: lightskyblue;
 }
-
+.card{
+   padding: 0%;
+   margin: 0px;
+}
+/*
 .boards {
   border: 1.5pt solid darkorange;
   border-radius: 0.5rem;
   padding-top: 0.5%;
   padding-bottom: 0.5%;
-}
+} */
 
-.cardStyle {
-  margin: 2px 2px 2px 2px;
-}
-
-.cardBtns {
+/* .cardBtns {
   margin: 10px 20px 10px 10px;
-}
+} */
 </style>
 
