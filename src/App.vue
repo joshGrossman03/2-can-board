@@ -184,87 +184,94 @@ export default {
     };
   },
 
-  methods: {
-    runFilter(filter) {
-      if (filter == "all") {
-        this.cardsFiltered = this.cards;
-      } else if (filter == "personal") {
-        this.cardsFiltered = this.cards.filter(
-          card => card.category == "Personal"
-        );
-      } else if (filter == "team") {
-        this.cardsFiltered = this.cards.filter(card => card.category == "Team");
-      }
-    },
+  methods:
+    //Creates the category filters of Personal, Team and All
+    {
+      runFilter(filter) {
+        if (filter == "all") {
+          this.cardsFiltered = this.cards;
+        } else if (filter == "personal") {
+          this.cardsFiltered = this.cards.filter(
+            card => card.category == "Personal"
+          );
+        } else if (filter == "team") {
+          this.cardsFiltered = this.cards.filter(
+            card => card.category == "Team"
+          );
+        }
+      },
 
-    deleteTodo(id) {
-      axios
-        .delete("/api/todos/" + id)
-        .then(res => (this.cards = res.data))
-        .catch(error => console.log(error));
-
-      axios
-        .get("/api/todos")
-        .then(res => (this.cardsFiltered = this.cards = res.data))
-        .catch(error => console.log(error));
-    },
-
-    addTodo(createTodo) {
-      const { title, category, description, status } = createTodo;
-
-      axios
-        .post("/api/todos", {
-          title,
-          category,
-          description,
-          status: "todo"
-        })
-        .then(res => (this.cardsFiltered = [...this.cardsFiltered, res.data]))
-        .catch(error => console.log(error));
-    },
-
-    updateTodo(id, title, category, description, status) {
-      if (status === "todo") {
-        status = "inProgress";
-      } else if (status === "inProgress") {
-        status = "inProgressWaiting";
-      } else if (status === "inProgressWaiting") {
-        status = "done";
-      }
-      console.log(id, title, category, description, status);
-      axios
-        .put("/api/todos", {
-          id,
-          title,
-          category,
-          description,
-          status
-        })
-        .then(res => (this.cardsFiltered = [...this.cardsFiltered, res.data]))
-        .catch(error => console.log(error));
-
-      axios
-        .get("/api/todos")
-        .then(res => (this.cardsFiltered = this.cards = res.data))
-        .catch(error => console.log(error));
-    },
-
-    //Clears the done cards when user clicks "cLear done" button
-    clearDone(status) {
-      {
-        let cardsDone = this.cards.filter(card => card.status == "done");
+      //Deletes a single to do item when the Delete button is clicked
+      deleteTodo(id) {
         axios
-          .delete("/api/todos", { data: cardsDone })
+          .delete("/api/todos/" + id)
           .then(res => (this.cards = res.data))
           .catch(error => console.log(error));
+
         axios
           .get("/api/todos")
           .then(res => (this.cardsFiltered = this.cards = res.data))
           .catch(error => console.log(error));
+      },
+
+      //add a new to do button by clicking add to do button
+      addTodo(createTodo) {
+        const { title, category, description, status } = createTodo;
+
+        axios
+          .post("/api/todos", {
+            title,
+            category,
+            description,
+            status: "todo"
+          })
+          .then(res => (this.cardsFiltered = [...this.cardsFiltered, res.data]))
+          .catch(error => console.log(error));
+      },
+
+      //Update the status of a to do item by clicking the "move forward" button, status will update to the next status and move to the corresponding 'board'
+      updateTodo(id, title, category, description, status) {
+        if (status === "todo") {
+          status = "inProgress";
+        } else if (status === "inProgress") {
+          status = "inProgressWaiting";
+        } else if (status === "inProgressWaiting") {
+          status = "done";
+        }
+        //for troubleshooting  console.log(id, title, category, description, status);
+        axios
+          .put("/api/todos", {
+            id,
+            title,
+            category,
+            description,
+            status
+          })
+          .then(res => (this.cardsFiltered = [...this.cardsFiltered, res.data]))
+          .catch(error => console.log(error));
+
+        axios
+          .get("/api/todos")
+          .then(res => (this.cardsFiltered = this.cards = res.data))
+          .catch(error => console.log(error));
+      },
+
+      //Clears the done cards from the board and deletes from db, when user clicks "CLear done tasks" button
+      clearDone(status) {
+        {
+          let cardsDone = this.cards.filter(card => card.status == "done");
+          axios
+            .delete("/api/todos", { data: cardsDone })
+            .then(res => (this.cards = res.data))
+            .catch(error => console.log(error));
+          axios
+            .get("/api/todos")
+            .then(res => (this.cardsFiltered = this.cards = res.data))
+            .catch(error => console.log(error));
+        }
       }
-    }
-  },
-  //Gets tasks from db
+    },
+  //Gets tasks from db, render on page
   created() {
     axios
       .get("/api/todos")
@@ -348,12 +355,12 @@ export default {
 .boardHeader {
   font-size: 24pt;
   color: white;
-  background-color: rgba(243, 157, 18, 0.412);
+  background-color: rgba(243, 157, 18, 0.512);
   text-align: center;
 }
 
 .cardBtn {
-  margin-left: 8%;
+  margin-left: 3%;
 }
 
 .material-icons {
