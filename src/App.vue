@@ -34,7 +34,7 @@
 
           <!-- Button to clear "Done" items -->
           <div class="col-sm-5 col-md-5 col-lg-5">
-            <button class="clearDoneBtn" @click="clearDone('done')">Clear Done Tasks</button>
+            <button class="clearDoneBtn" @click="clearDone('done')">Clear Done Tasks  <i class="material-icons">delete_sweep</i></button>
           </div>
         </div>
 
@@ -49,19 +49,21 @@
               <p class="card-text">{{card.description}}</p>
               <p v-bind:data-id="card.id"></p>
 
-              <!-- Button that advances card to next status -->
-              <button
-                v-on:click="updateTodo(card.id,card.title, card.category, card.description,card.status)"
-                type="button"
-                class="btn btn-secondary btn-sm cardBtn"
-              >Move Forward</button>
+              
               <!-- Button that will delete a task/card to next status -->
               <button
                 v-bind:data-id="card.id"
                 v-on:click="deleteTodo(card.id)"
                 href="#"
                 class="btn btn-primary btn-sm"
-              >Delete</button>
+              ><i class="material-icons">delete</i></button>
+
+              <!-- Button that advances card to next status -->
+              <button
+                v-on:click="updateTodo(card.id,card.title, card.category, card.description,card.status)"
+                type="button"
+                class="btn btn-secondary btn-sm cardBtn"
+              ><i class="material-icons">navigate_next</i></button>
             </Card>
           </Board>
           <!--Board 2 is the In Progress-working list -->
@@ -76,19 +78,20 @@
               <h6 class="card-title">Category: {{card.category}}</h6>
               <p class="card-text">{{card.description}}</p>
               <p v-bind:data-id="card.id"></p>
-              <!-- Button that advances card to next status -->
-              <button
-                v-on:click="updateTodo(card.id,card.title, card.category, card.description,card.status)"
-                type="button"
-                class="btn btn-secondary btn-sm cardBtn"
-              >Move Forward</button>
+              
               <!-- Button that will delete a task/card -->
               <button
                 v-bind:data-id="card.id"
                 v-on:click="deleteTodo(card.id)"
                 href="#"
                 class="btn btn-primary btn-sm"
-              >Delete</button>
+              ><i class="material-icons">delete</i></button>
+              <!-- Button that advances card to next status -->
+              <button
+                v-on:click="updateTodo(card.id,card.title, card.category, card.description,card.status)"
+                type="button"
+                class="btn btn-secondary btn-sm cardBtn"
+              ><i class="material-icons">navigate_next</i></button>
             </Card>
           </Board>
           <!--Board 3 is the In Progress-waiting list -->
@@ -103,19 +106,21 @@
               <h6 class="card-title">Category: {{card.category}}</h6>
               <p class="card-text">{{card.description}}</p>
               <p v-bind:data-id="card.id"></p>
-              <!-- Button that will move a task/card to next status -->
-              <button
-                v-on:click="updateTodo(card.id,card.title, card.category, card.description,card.status)"
-                type="button"
-                class="btn btn-secondary btn-sm cardBtn"
-              >Move Forward</button>
+              
               <!-- Button that will delete a task/card -->
               <button
                 v-bind:data-id="card.id"
                 v-on:click="deleteTodo(card.id)"
                 href="#"
                 class="btn btn-primary btn-sm"
-              >Delete</button>
+              ><i class="material-icons">delete</i></button>
+              <!-- Button that will move a task/card to next status -->
+              <button
+                v-on:click="updateTodo(card.id,card.title, card.category, card.description,card.status)"
+                type="button"
+                class="btn btn-secondary btn-sm cardBtn"
+              ><i class="material-icons">navigate_next</i></button>
+              
             </Card>
           </Board>
           <!--Board 4 is the Completed list -->
@@ -132,7 +137,7 @@
                 v-on:click="deleteTodo(card.id)"
                 href="#"
                 class="btn btn-primary btn-sm"
-              >Delete</button>
+              ><i class="material-icons">delete</i></button>
             </Card>
           </Board>
         </div>
@@ -312,13 +317,13 @@ h3 {
   border-radius: 0.25rem;
 }
 .viewFilters:hover {
-  background: lightskyblue;
+  background: lightsalmon;
 }
 .viewFilters:focus {
   outline: none;
 }
 .viewFilters:active {
-  background: lightskyblue;
+  background: lightsalmon;
 }
 .card {
   padding: 0%;
@@ -335,5 +340,31 @@ h3 {
 .cardBtn {
   margin-right: 12%;
 }
+
+.material-icons {
+  vertical-align: middle !important;
+  padding-bottom: 3px;
+}
+
+button:hover{
+  background: #ffc000;
+}
+
+.btn-primary{
+  background:black
+}
+
+.btn-primary:hover{
+  background:#323232
+}
+
+.btn-secondary{
+  background: #ff8c00;
+}
+
+.btn-secondary:hover{
+  background: #ffc000;
+}
+
 </style>
 
