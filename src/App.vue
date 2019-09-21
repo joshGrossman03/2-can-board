@@ -16,15 +16,15 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-sm-3 col-md-3 col-lg-3">
+          <div class="col-sm-5 col-md-5 col-lg-5">
             <button
               class="viewFilters personalFilter"
               :class="{active: filter = 'personal'}"
               @click="runFilter('personal')"
             >View Personal Tasks</button>
-          </div>
+            <!--  </div> -->
 
-          <div class="col-sm-4 col-md-4 col-lg-4">
+            <!-- <div class="col-sm-4 col-md-4 col-lg-4"> -->
             <button
               class="viewFilters teamFilter"
               :class="{active: filter = 'team'}"
@@ -33,8 +33,9 @@
           </div>
 
           <!-- Button to clear "Done" items -->
-          <div class="col-sm-5 col-md-5 col-lg-5">
-            <button class="clearDoneBtn" @click="clearDone('done')">Clear Done Tasks  <i class="material-icons">delete_sweep</i></button>
+          <div class="col-sm-7 col-md-7 col-lg-7">
+            <button class="clearDoneBtn" @click="clearDone('done')">Clear Done Tasks <i class="material-icons">delete_sweep</i></button>
+
           </div>
         </div>
 
@@ -276,12 +277,9 @@ export default {
   background-attachment: fixed;
 }
 
-h3 {
-  text-align: center;
-}
 .clearDoneBtn {
   font-size: 14px;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.65);
   appearance: none;
   border: 1px solid black;
   border-radius: 0.25rem;
@@ -300,18 +298,21 @@ h3 {
 
 .allBtn {
   margin: 10px 0px 4px 10px;
+  font-size: 16pt;
+  font-weight: less bold;
 }
 
 .personalFilter {
-  margin: 10px 0px 20px 55px;
+  margin: 10px 6px 20px 10px;
+  font-size: 14px;
 }
 
 .teamFilter {
   margin: 10px 0px 20px 0px;
+  font-size: 14px;
 }
 .viewFilters {
-  font-size: 14px;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.65);
   appearance: none;
   border: 1px solid black;
   border-radius: 0.25rem;
@@ -333,7 +334,7 @@ h3 {
 .boardHeader {
   font-size: 24pt;
   color: white;
-  background-color: rgba(243, 157, 18, 0.212);
+  background-color: rgba(243, 157, 18, 0.412);
   text-align: center;
 }
 
