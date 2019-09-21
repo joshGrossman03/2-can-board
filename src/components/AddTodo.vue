@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button @click="show = !show" class="btn btn-info addTaskBtn">Add Task</button>
+    <button @click="show = !show" class="btn btn-info addTaskBtn"><i class="material-icons">add_box</i>  Add Task</button>
     <form v-if="show">
       <div class="form-group">
         <label for="title">Task Title</label>
@@ -31,7 +31,7 @@
         ></textarea>
         {{this.title}}{{this.category}}{{this.description}}
       </div>
-      <button class="submitTask" @click="addTodo">Submit</button>
+      <button class="submitTask" @click="addTodo">Submit  <i class="material-icons right">send</i></button>
     </form>
   </div>
 </template>
@@ -73,11 +73,31 @@ export default {
 <style scoped>
 @import url("https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css");
 
-.addTaskBtn {
+button, input[type="button"], input[type="submit"] { 
+    background:#ff8c00;
+}
+
+button:hover{
+  background: #ffc000;
+}
+
+.addTaskBtn.hover{
+  background: #ffc000;
+}
+.addTaskBtn { 
   margin: 10px 10px 10px 10px;
+}
+.addTaksBtn.active {
+  background: #ff8c00;
 }
 
 .submitTask {
   margin: 0px 0px 20px 10px;
+  color:white
+}
+
+.material-icons {
+  vertical-align: middle !important;
+  padding-bottom: 3px;
 }
 </style>

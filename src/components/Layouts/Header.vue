@@ -11,11 +11,22 @@ export default {
 </script>
 
 <style scoped>
+
+img{
+    width: auto;
+    height: auto;
+    max-height:40px;
+    position: center;
+    vertical-align: center;
+    padding-bottom:5px;
+
+}
 .header{
     background: whitesmoke;
     color:#fff;
     text-align: center;
     padding: 10px;
+    height: 50px;
 }
 .header a {
     color: #fff;
