@@ -16,7 +16,7 @@ This simple task based kanban style app allows the user to #1 - Add personal tas
   - JawsDB
   - Bootstrap
   - MySql2
-  - Hosted on Heroku
+  - Deployed on Heroku: https://two-can-board.herokuapp.com/
  
 ## How the app is structured
  - This is a single page application
