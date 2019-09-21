@@ -36,7 +36,7 @@
           rows="3"
           placeholder="What do you have to do?"
         ></textarea>
-        {{this.title}}{{this.category}}{{this.description}}
+        <!-- {{this.title}}{{this.category}}{{this.description}} -->
       </div>
       <button class="submitTask" @click="addTodo">
         Submit
