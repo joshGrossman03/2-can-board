@@ -353,7 +353,7 @@ export default {
 }
 
 .cardBtn {
-  margin-left: 8%;
+  margin-left: 3%;
 }
 
 .material-icons {
