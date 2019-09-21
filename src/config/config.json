@@ -9,7 +9,7 @@
   },
   "test": {
     "username": "root",
-    "password": "IrwinY2KSQL!",
+    "password": "kadonna",
     "database": "database_test",
     "host": "localhost",
     "port": 3306,
