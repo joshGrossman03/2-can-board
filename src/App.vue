@@ -306,7 +306,7 @@ export default {
   font-size: 14px;
 }
 .viewFilters {
-  background-color: rgba(255, 255, 255, 0.35);
+  background-color: rgba(255, 255, 255, 0.65);
   appearance: none;
   border: 1px solid black;
   border-radius: 0.25rem;
